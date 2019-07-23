@@ -23,18 +23,16 @@ class MinHeap:
             self.nodes[left]
         except IndexError:
             left = None
-            print('No left child node')
         
         # Right
         try:
             self.nodes[right]
         except IndexError:
             right = None
-            print('No right child node')
         
         # Validation
         if not right and not left:
-            raise IndexError("Node has no children")  
+            return None
 
         return {
             'left': left,
@@ -45,7 +43,7 @@ class MinHeap:
         """
         Gets the index of the parent node given that node's index.
         """
-        return (index - 1 ) / 2 if index != 0 else None
+        return int((index - 1 ) / 2) if index != 0 else None
 
     def swap_nodes(self, n1_index, n2_index):
         """
@@ -71,12 +69,17 @@ class MinHeap:
         p_index = self.get_parent_index(index)
         p_val = self.nodes[p_index]
         
-        while p_index and p_val > val:
+        while p_index is not None and p_val > val:
             self.swap_nodes(index, p_index)
             val = p_val
             index = p_index
             p_index = self.get_parent_index(index)
-            p_val = self.nodes[p_index]
+            
+            # If unsortable, break
+            if not p_index:
+                break
+            else:
+                p_val = self.nodes[p_index]
 
     def adjust_heap_down(self):
         """
@@ -93,12 +96,18 @@ class MinHeap:
             else:
                 smaller_child_index = left
 
-            if self.nodes[index] < self.nodes[smaller_child_index]:
+            if self.nodes[index] > self.nodes[smaller_child_index]:
                 self.swap_nodes(index, smaller_child_index)
-                index = smaller_child_index
-                children = self.get_child_indicies(index)
-                left = children['left']
-                right = children['right']
+            
+            index = smaller_child_index
+            children = self.get_child_indicies(index)
+
+            # Check if we have reached the bottom
+            if children is None:
+                break
+
+            left = children['left']
+            right = children['right']
 
     def get_min(self):
         """
@@ -124,7 +133,24 @@ class MinHeap:
 
 
 # Initialising the heap
-heap = MinHeap()
-heap2 = MinHeap(10)
+heap = MinHeap(10)
+heap2 = MinHeap()
 
-print(heap, heap2)
+# print(heap, heap2) # [10], []
+
+# Add value to heap
+heap.add_node(1) # Smaller value
+heap.add_node(13)
+
+print(heap) # [1, 10, 13]
+
+# More values
+for i in [5, 14, 2]:
+    heap.add_node(i)
+
+print(heap) # [1, 5, 2, 10, 14, 13]
+
+
+# Pop values
+print(heap.get_min()) # 1
+print(heap) # [2, 5, 13, 10, 14]
