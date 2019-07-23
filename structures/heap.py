@@ -39,10 +39,7 @@ class MinHeap:
         }
 
     def get_parent_index(self, index):
-        if index == 0:
-            raise IndexError('Min value, no parent')
-        else:
-            return (index - 1 ) / 2
+        return (index - 1 ) / 2 if index != 0 else None
 
     def get_min(self):
         """
@@ -55,25 +52,40 @@ class MinHeap:
     def add_node(self, node):
         self.nodes.append(node)
 
-    def swap_nodes(self, node1, node2):
+    def swap_nodes(self, n1_index, n2_index):
         """
         Takes heap array and 2 Node instances and swaps the position of the 2 nodes,
         returning the newly organised heap array.
         """
-        # Get indicies
-        n1_index = self.nodes.index(node1)
-        n2_index = self.nodes.index(node2)
+        n1 = self.nodes[n1_index]
+        n2 = self.nodes[n2_index]
 
-        # Swap
-        self.nodes[n1_index] = node2
-        self.nodes[n2_index] = node1
+        self.nodes[n1_index] = n2
+        self.nodes[n2_index] = n1
 
-    # def adjust_heap_up(self):
-    #     """
-    #     Gets the last item in the heap and bubbles it to its correct position.
-    #     """
-    #     val = self.nodes[len(self.nodes) - 1]
-    #     index = self.nodes.index(val) # should be len(self.nodes)
+    def adjust_heap_up(self):
+        """
+        Gets the last item in the heap and bubbles it up to its correct position.
+        """
+
+        # Current node
+        val = self.nodes[len(self.nodes) - 1]
+        index = self.nodes.index(val) # Starts as last node
+
+        # Parent node
+        p_index = self.get_parent_index(index)
+        p_val = self.nodes[p_index]
         
-    #     while self.get_parent_index()
+        while p_index and p_val > val:
+            self.swap_nodes(index, p_index)
+            val = p_val
+            index = p_index
+            p_index = self.get_parent_index(index)
+            p_val = self.nodes[p_index]
 
+    def adjust_heap_down(self):
+        """
+        Takes the smallest value and bubbles it down to the correct position
+        """
+        index = 0
+        children = self.get_child_indicies(index)
