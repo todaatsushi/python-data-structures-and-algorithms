@@ -90,6 +90,7 @@ class MinHeap:
         left = children['left']
         right = children['right']
 
+        # If child exists, has to at least exist on the left side
         while left:
             if right and self.nodes[right] < self.nodes[left]:
                 smaller_child_index = right
