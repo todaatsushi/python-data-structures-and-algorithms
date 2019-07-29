@@ -1,5 +1,5 @@
 """
-Python implementation of stack.
+Python implementation of a stack.
 """
 
 class Stack:
