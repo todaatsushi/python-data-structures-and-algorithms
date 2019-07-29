@@ -30,5 +30,9 @@ print(q) # [0, 4, 8]
 print(q.remove()) # 0
 print(q) # [4, 8]
 
+q0 = Queue(0, 4, 6, 8)
+print(q0)
+
 q2 = Queue()
 q2.remove()
+
