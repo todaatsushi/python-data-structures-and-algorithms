@@ -1,7 +1,7 @@
 """
 Binary Search
 
-Search a sorted array by repeatedly dividing the search interval in half.
+Search a sorted array/list by repeatedly dividing the search interval in half.
 """
 
 def binary_search(arr, x):
