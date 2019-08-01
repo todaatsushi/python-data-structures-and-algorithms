@@ -27,16 +27,17 @@ def interpolation_search(arr, start, end, value):
     Returns tuple (index, element) or -1 if value is not found.
     """
 
-    index = get_index(arr, start, end, value)
-    current = arr[index]
+    while start <= end and value >= arr[start] and value <= arr[end]:
+        index = get_index(arr, start, end, value)
+        current = arr[index]
 
-    if current == value:
-        return (index, current)
-    elif current < value:
-        return interpolation_search(arr, index + 1, end, value)
-    elif current > value:
-        return interpolation_search(arr, start, index - 1, value)
-
+        if current == value:
+            return (index, current)
+        elif current < value:
+            return interpolation_search(arr, index + 1, end, value)
+        elif current > value:
+            return interpolation_search(arr, start, index - 1, value)
+    return -1
 
 
 success = ([1, 2, 4, 6, 7, 10, 11, 14, 15], 4)
