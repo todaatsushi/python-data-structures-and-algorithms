@@ -27,6 +27,7 @@ def interpolation_search(arr, start, end, value):
     Returns tuple (index, element) or -1 if value is not found.
     """
 
+    # If array is valid, and target is within the bounds of the array, value may exist within it.
     while start <= end and value >= arr[start] and value <= arr[end]:
         index = get_index(arr, start, end, value)
         current = arr[index]
