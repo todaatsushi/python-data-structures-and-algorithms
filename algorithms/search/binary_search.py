@@ -29,11 +29,12 @@ def binary_search(arr, start, end, x):
             return binary_search(arr, middle_index + 1, end, x)
     return -1
 
+
 arr = [ 2, 3, 4, 10, 40 ]
 start = 0
 end = len(arr) - 1
 
-# Sucess
+# Success
 print(binary_search(arr, start, end, 10))
 
 # Fail
