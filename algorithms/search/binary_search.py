@@ -34,8 +34,8 @@ arr = [ 2, 3, 4, 10, 40 ]
 start = 0
 end = len(arr) - 1
 
-# Success
-print(binary_search(arr, start, end, 10))
+# # Success
+# print(binary_search(arr, start, end, 10))
 
-# Fail
-print(binary_search(arr, start, end, 100))
+# # Fail
+# print(binary_search(arr, start, end, 100))
