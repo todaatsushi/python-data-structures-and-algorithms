@@ -14,20 +14,22 @@ def selection_sort(arr, asc=True):
     Outputs:
     - Sorted version of list of ints.
     """
+    # Return variable
     sorted_list = []
     unsorted_list = list(arr)
 
+    # Keep taking min value out of unsorted_list until all values are taken
     while len(unsorted_list) is not 0:
         current = unsorted_list.pop(
             unsorted_list.index(min(unsorted_list))
         )
-        sorted_list.insert(len(sorted_list), current)
 
-    if not asc:
-        desc_list = []
-        for i in sorted_list:
-            desc_list.insert(0, i)
-        return desc_list
+        # Add to the end of the sorted array for ascending, beginning if descending
+        sorted_list.insert(
+            len(sorted_list) if asc else 0,
+            current
+        )
+
     return sorted_list
 
 
