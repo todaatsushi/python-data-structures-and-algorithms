@@ -5,6 +5,7 @@ Divides array/list arr into 2 halves, sorts the two halves, and then
 merges the two sorted halves.
 """
 
+
 def merge_sort(arr, asc=True):
     """
     Input:
@@ -14,10 +15,22 @@ def merge_sort(arr, asc=True):
     Returns
     - Sorted list
     """
-    pass
+    from math import floor
+    print(arr)
+    unsorted = list(arr)
+    size = len(arr)
+
+    # If size is bigger than 1
+        # split into left and right
+        # sort both left and right halves
+    # Else just return single element
+
+    # Merge two halves via insertion sort
+    # return
+
 
 import random
-unsorted = [random.randint(0, 1000) for i in range(0, 10)]
+unsorted = [random.randint(0, 1000) for i in range(0, 9)]
 
 print(merge_sort(unsorted))
-print(merge_sort(unsorted, False))
+# print(merge_sort(unsorted, False))
