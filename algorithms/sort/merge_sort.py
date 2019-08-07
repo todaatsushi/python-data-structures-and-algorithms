@@ -19,10 +19,19 @@ def merge_sort(arr, asc=True):
     print(arr)
     unsorted = list(arr)
     size = len(arr)
-
-    # If size is bigger than 1
+    
+    # If size is bigger than 1    
+    if size > 1:
         # split into left and right
+        middle_index = floor(size / 2)
+        left = unsorted[0:middle_index]
+        right = unsorted[middle_index:size]
+        print(left, right)
         # sort both left and right halves
+        left, right = merge_sort(left, asc), merge_sort(right, asc)
+        print(left, right)
+    else:
+        return unsorted
     # Else just return single element
 
     # Merge two halves via insertion sort
