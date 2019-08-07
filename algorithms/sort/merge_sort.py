@@ -53,10 +53,6 @@ def merge_sort(arr, asc=True):
 
     # Merge two halves via insertion sort
     merged = merge(left, right, asc)
-
-    # Reverse if desc
-    if not asc:
-        return [merged[i] for i in range(len(merged) - 1, -1, -1)]
     return merged
 
 
