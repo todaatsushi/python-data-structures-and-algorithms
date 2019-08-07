@@ -7,6 +7,12 @@ merges the two sorted halves.
 
 def merge_sort(arr, asc=True):
     """
+    Input:
+    - arr - unsorted list of ints
+    - asc - True for ascending, False for descending
+
+    Returns
+    - Sorted list
     """
     pass
 
