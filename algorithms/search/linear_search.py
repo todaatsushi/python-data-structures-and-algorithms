@@ -3,7 +3,6 @@ Linear search implementation.
 
 Given an array/list arr of n elements, write a function to search a given element x in arr.
 """
-import sys
 
 def linear_search(arr, x):
     try:
