@@ -4,6 +4,26 @@ Merge sort
 Divides array/list arr into 2 halves, sorts the two halves, and then
 merges the two sorted halves.
 """
+from insertion_sort import insertion_sort
+
+
+def merge(arr1, arr2, asc=True):
+    """
+    Merges two lists arr1 and arr2 of ints into one in
+    either ascending or descending order.
+
+    Inputs:
+    - arr1, arr2 - lists of ints
+    - asc - bool, True for ascending, False for descending
+
+    Outputs:
+    - Returns sorted list if ints
+    """
+    arr1.extend(arr2)
+    return insertion_sort(
+        arr1,
+        asc
+    )
 
 
 def merge_sort(arr, asc=True):
@@ -16,7 +36,6 @@ def merge_sort(arr, asc=True):
     - Sorted list
     """
     from math import floor
-    print(arr)
     unsorted = list(arr)
     size = len(arr)
     
@@ -26,20 +45,19 @@ def merge_sort(arr, asc=True):
         middle_index = floor(size / 2)
         left = unsorted[0:middle_index]
         right = unsorted[middle_index:size]
-        print(left, right)
         # sort both left and right halves
         left, right = merge_sort(left, asc), merge_sort(right, asc)
-        print(left, right)
     else:
+        # Else just return single element
         return unsorted
-    # Else just return single element
 
     # Merge two halves via insertion sort
-    # return
+    return merge(left, right, asc)
 
 
 import random
 unsorted = [random.randint(0, 1000) for i in range(0, 9)]
 
+print('\nMerge sort results:\n')
 print(merge_sort(unsorted))
-# print(merge_sort(unsorted, False))
+print(merge_sort(unsorted, False))
