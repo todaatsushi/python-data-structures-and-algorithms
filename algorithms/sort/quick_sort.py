@@ -66,11 +66,11 @@ def quick_sort(arr, asc=True):
             arr[0:right] = quick_sort(arr[0:right])
             arr[right + 1:size + 1] = quick_sort(arr[right + 1:size + 1])
 
+    if not asc:
+        return [arr[i] for i in range(size - 1, -1, -1)]
     return arr
 
 import random
-# unsorted = [15, 3, 9, 8, 5, 2, 7, 1, 6]
-# unsorted = [10, 16, 8, 12, 15, 6, 3, 9, 5]
 
 for i in range(0, 100):
     unsorted = [random.randint(0, 20) for i in range(0, 6)]
@@ -78,4 +78,5 @@ for i in range(0, 100):
     if quick != sorted(unsorted):
         print(False)
 
-# print(quick_sort(unsorted, False))
+print(quick_sort(unsorted, False))
+print(quick_sort(unsorted))
