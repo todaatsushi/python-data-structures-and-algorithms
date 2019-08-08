@@ -33,7 +33,7 @@ def quick_sort(arr, asc=True):
                 break
 
         # decremenet right until element is smaller than or equal to pivot
-        while not arr[right] <= pivot:
+        while not arr[right] < pivot:
             right -= 1
             if right == 0:
                 if left == size:
@@ -55,23 +55,27 @@ def quick_sort(arr, asc=True):
         pass
     else:
         split_point = arr.index(arr[right])
-        arr[0:right] = quick_sort(arr[0:right])
-        arr[right + 1:size + 1] = quick_sort(arr[right + 1:size + 1])
+
+        if split_point == size or right == size -1:
+            arr[0:right] = quick_sort(arr[0:right])
+            arr[-1:] = quick_sort(arr[-1:])
+        elif split_point == 0:
+            arr[:1] = quick_sort(arr[:1])
+            arr[right + 1:size + 1] = quick_sort(arr[right + 1:size + 1])
+        else:
+            arr[0:right] = quick_sort(arr[0:right])
+            arr[right + 1:size + 1] = quick_sort(arr[right + 1:size + 1])
 
     return arr
-        
-            
-
-    
-                
-
 
 import random
 # unsorted = [15, 3, 9, 8, 5, 2, 7, 1, 6]
-unsorted = [10, 16, 8, 12, 15, 6, 3, 9, 5]
+# unsorted = [10, 16, 8, 12, 15, 6, 3, 9, 5]
 
-# unsorted = [random.randint(0, 20) for i in range(0, 6)]
-quick = quick_sort(unsorted)
-print(quick)
+for i in range(0, 100):
+    unsorted = [random.randint(0, 20) for i in range(0, 6)]
+    quick = quick_sort(unsorted)
+    if quick != sorted(unsorted):
+        print(False)
 
 # print(quick_sort(unsorted, False))
