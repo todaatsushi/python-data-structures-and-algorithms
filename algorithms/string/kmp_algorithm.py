@@ -17,7 +17,7 @@ def kmp_search(txt, pat):
 
     Returns empty string if pat doesn't exist.
     """
-    # Create pi table - all vals to set to 0 initially
+    ## Create pi table - all vals to set to 0 initially
     pi = [
         {
             'letter': pat[i],
@@ -43,25 +43,49 @@ def kmp_search(txt, pat):
                 index = n
                 break
 
-    # add a start point at the beginning of the pi table
-    pi.insert(0, 'start')
-    print(pi)
-
     # Return object
     indicies = []
 
     ## Algorithm
     # Loop over txt
-        # If letter matches first letter in pat
-        # Log starting index
+    txt_index = 0
+    start_index = 0
+    pat_index = 0
+    size = len(txt)
+
+    # Loop over pat
+    while txt_index < size:
+        # Get place in txt
+        text = txt[txt_index]
+        pattern = pi[pat_index]['letter']
+        # If letter matches first letter in pat check next letter
+        if text == pattern:
+            # If at the end of pattern it is a match
+            if pat_index == len(pat) - 1:
+                indicies.append(start_index)
+                start_index = txt_index + 1
+                pat_index = -1
+            # If at the end of txt, return indicies
+            if txt_index == len(txt) - 1:
+                return indicies
+            
             # Check next letter
-            # Continue until mismatch
+            pat_index += 1
+        # else move onto next letter
         ## Mismatch
+        else:
+            # Start a new match pattern
+            start_index = txt_index + 1
+
             # revert pattern index to the value index assigned to the
+            pat_index = pi[pat_index]['value']
+            
             # letter in the pi table
+
+        txt_index += 1
     # if word is matched, add starting index to return list
     # else return empty list
-    pass
+    return indicies
 
 
 txt = 'ababcabcabababd'
