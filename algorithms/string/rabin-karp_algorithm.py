@@ -5,6 +5,25 @@ Search string txt for string pat using the Rabin-Karp algorithm where a hash fun
 to generate a hash code for pat. The hash code is used to find the pattern in txt.
 """
 
+
+def get_hash(pat):
+    """
+    Using ascii values as the hash values for each character in pat,
+    returns a hash code where the ascii values of pat are totalled.
+
+    Inputs:
+    - pat - string to get code for. Assumes pat is a string.
+
+    Outputs:
+    - Int hash code.
+    """
+    code = 0
+    for char in pat:
+        code += ord(char)
+
+    return code
+
+
 def rabin_karp_algorithm(txt, pat):
     """
     Inputs:
@@ -13,6 +32,7 @@ def rabin_karp_algorithm(txt, pat):
 
     Output:
     Returns a list of indicies in txt where pat appears.
+    Returns empty list if no matches are found.
     """
     # Create hash function
     # Get hash code
