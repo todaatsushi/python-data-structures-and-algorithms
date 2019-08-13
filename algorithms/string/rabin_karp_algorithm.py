@@ -34,19 +34,43 @@ def rabin_karp_algorithm(txt, pat):
     Returns a list of indicies in txt where pat appears.
     Returns empty list if no matches are found.
     """
-    # Create hash function
-    # Get hash code
+    # Get hash code of pat
+    pat_value = get_hash(pat)
+    pat_size = len(pat)
+    txt_size = len(txt)
 
     ## Rolling hash function
-    # Iterate through txt
-    # Use hash function and get the hash code of the current substring
-    # if the hash code matches
-        # Iterate through the string and check the values match
-        # Log the start index
-    # Carry on cycling
+    current = ''
+    start_index = 0
+    indicies = []
 
+    # Iterate through txt
+    for i in range(txt_size - 2):
+        # Construct txt substring
+        for n in range(pat_size):
+            current += txt[i + n]
+        # Use hash function and get the hash code of the current substring
+        current_value = get_hash(current)
+        match = True
+
+        if current_value == pat_value:
+            # if the hash code matches
+            for x in range(pat_size):
+                # Iterate through the string and check the values match
+                if pat[x] != current[x]:
+                    match = False
+                    break
+            # Log the start index
+            if match:
+                indicies.append(start_index)
+
+        # Carry on cycling
+        current = ''
+        start_index = i + 1
+        if start_index == txt_size:
+            break
     # Return
-    pass
+    return indicies
 
 txt = 'aaaaab'
 pat = 'aab'
