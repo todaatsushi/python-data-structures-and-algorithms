@@ -14,6 +14,18 @@ def rabin_karp_algorithm(txt, pat):
     Output:
     Returns a list of indicies in txt where pat appears.
     """
+    # Create hash function
+    # Get hash code
+
+    ## Rolling hash function
+    # Iterate through txt
+    # Use hash function and get the hash code of the current substring
+    # if the hash code matches
+        # Iterate through the string and check the values match
+        # Log the start index
+    # Carry on cycling
+
+    # Return
     pass
 
 txt = 'aaaaab'
